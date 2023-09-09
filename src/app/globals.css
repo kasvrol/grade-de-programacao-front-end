@@ -2,6 +2,11 @@
     --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
         "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
         "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    --primeira-cor-padrao: #000;
+    --segunda-cor-padrao: #d32f2f;
+    --terceira-cor-padrao: #0288d1;
+    --quarta-cor-padrao: #ffa726;
+    --quinta-cor-padrao: #1ca4a6;
 }
 
 * {
@@ -14,6 +19,8 @@ html,
 body {
     max-width: 100vw;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
