@@ -1,0 +1,35 @@
+.LoadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.ImagemLogo {
+    width: 30vw;
+    height: max-content;
+}
+
+.Loading span i:first-child {
+    background-color: #047bbf !important;
+}
+
+.Loading span i:nth-child(2) {
+    background-color: #1ca4a6 !important;
+}
+
+.Loading span i:nth-child(3) {
+    background-color: #e7ab21 !important;
+}
+
+.Loading span i:nth-child(4) {
+    background-color: #ba1325 !important;
+}
+
+@media screen and (min-width: 800px) {
+    .ImagemLogo {
+        width: 15vw;
+        height: auto;
+    }
+}
