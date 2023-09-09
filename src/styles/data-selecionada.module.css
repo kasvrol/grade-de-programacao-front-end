@@ -1,0 +1,11 @@
+.DataContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.DataTitulo {
+    color: var(--primeira-cor-padrao);
+    margin: 0 2rem;
+}
