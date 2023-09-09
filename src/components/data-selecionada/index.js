@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/data-selecionada.module.css";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-export default function DataSelecionada({ dataDeHoje, dataDeHojeFormatada }) {
+export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
     const [data, setData] = useState(dataDeHoje);
     const [indiceDiaDaSemana, setIndiceDiaDaSemana] = useState(data.getDay());
     const [dia, setDia] = useState(data.getDate());
@@ -15,6 +15,9 @@ export default function DataSelecionada({ dataDeHoje, dataDeHojeFormatada }) {
         setIndiceDiaDaSemana(data.getDay());
         setDia(data.getDate());
         setIndiceDiaDoMes(data.getMonth());
+        setDataDeProgramacao(
+            data.toLocaleDateString("pt-BR").split("/").reverse().join("-")
+        );
     }, [data]);
 
     const diaDaSemanaPTBR = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
