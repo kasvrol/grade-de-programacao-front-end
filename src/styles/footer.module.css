@@ -1,0 +1,34 @@
+.Footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+    background-color: var(--terceira-cor-padrao);
+    margin: 2rem 0 0 0;
+    color: white;
+    font-size: 10px;
+    font-family: "proximanova-light", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.LogoContainer {
+    width: 2.5rem;
+    height: auto;
+    margin: 0 2rem;
+}
+
+.ImagemLogo {
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .Footer {
+        height: 6rem;
+    }
+    .Copyright {
+        width: 60%;
+        text-align: center;
+    }
+}
