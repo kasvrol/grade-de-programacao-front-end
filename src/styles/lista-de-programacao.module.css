@@ -1,0 +1,92 @@
+.ListaDeProgramacaoContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.Collapse {
+    width: 100%;
+    max-width: 74rem;
+}
+
+.ListaContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ListaContainer > * {
+    margin-right: 1rem;
+}
+
+.Horario {
+    font-size: var(--font-size-padrao);
+}
+
+.Titulo {
+    font-size: var(--font-size-padrao);
+}
+
+.CardContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.TituloDaApresentacao {
+    color: var(--terceira-cor-padrao);
+}
+
+.Apresentacao {
+    display: flex;
+    align-items: flex-start;
+    height: auto;
+    margin: 2rem 0;
+}
+
+.ImagemContainerApresentacao {
+    width: 30rem;
+    height: auto;
+    margin: 0 2rem 0 0;
+    max-width: 50rem;
+}
+
+.ImagemContainerLogo {
+    width: 3.5em;
+    max-width: 4rem;
+}
+
+.Imagem {
+    width: 100%;
+    height: auto;
+}
+
+.ApresentacaoTextual {
+    width: 30rem;
+    font-size: var(--font-size-padrao);
+}
+
+@media screen and (max-width: 800px) {
+    .Apresentacao {
+        flex-direction: column;
+        margin: 0;
+    }
+    .ListaContainer > * {
+        margin-right: 0.5rem;
+    }
+    .ImagemContainerApresentacao {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .ApresentacaoTextual {
+        width: 100%;
+        font-size: var(--font-size-mobile);
+        margin: 0 0 1rem 0;
+    }
+    .Titulo {
+        max-width: 10rem;
+    }
+}

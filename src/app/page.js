@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-
+import ListaProgramacao from "@/components/lista-programacao";
 import DataSelecionada from "@/components/data-selecionada";
 
 export default function Home() {
@@ -16,6 +16,7 @@ export default function Home() {
                 dataDeHoje={dataDeHoje}
                 setDataDeProgramacao={setDataDeProgramacao}
             />
+            <ListaProgramacao dataDeProgramacao={dataDeProgramacao} />
         </main>
     );
 }

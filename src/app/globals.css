@@ -7,6 +7,8 @@
     --terceira-cor-padrao: #0288d1;
     --quarta-cor-padrao: #ffa726;
     --quinta-cor-padrao: #1ca4a6;
+    --font-size-padrao: 1rem;
+    --font-size-mobile: 14px;
 }
 
 * {
