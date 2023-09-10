@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import ListaProgramacao from "@/components/lista-programacao";
 import DataSelecionada from "@/components/data-selecionada";
+import { formataData } from "@/utils/funcoes";
 
 export default function Home() {
     const dataDeHoje = new Date();
     const [dataDeProgramacao, setDataDeProgramacao] = useState(
-        dataDeHoje.toLocaleDateString("pt-BR").split("/").reverse().join("-")
+        formataData(dataDeHoje)
     );
 
     return (

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/data-selecionada.module.css";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { formataData } from "@/utils/funcoes";
 export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
     const [data, setData] = useState(dataDeHoje);
     const [indiceDiaDaSemana, setIndiceDiaDaSemana] = useState(data.getDay());
@@ -15,9 +16,7 @@ export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
         setIndiceDiaDaSemana(data.getDay());
         setDia(data.getDate());
         setIndiceDiaDoMes(data.getMonth());
-        setDataDeProgramacao(
-            data.toLocaleDateString("pt-BR").split("/").reverse().join("-")
-        );
+        setDataDeProgramacao(formataData(data));
     }, [data]);
 
     const diaDaSemanaPTBR = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
@@ -37,13 +36,7 @@ export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
     ];
 
     const verificaData = (dataParametro) => {
-        const dataModificada = new Date(
-            dataParametro
-                .toLocaleDateString("pt-BR")
-                .split("/")
-                .reverse()
-                .join("-")
-        );
+        const dataModificada = new Date(formataData(dataParametro));
         const diferencaEmMilissegundos = dataDeHoje - dataModificada;
         const diferencaEmDias = Math.floor(
             diferencaEmMilissegundos / (1000 * 60 * 60 * 24)
