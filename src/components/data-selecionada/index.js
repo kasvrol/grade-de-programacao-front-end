@@ -35,33 +35,12 @@ export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
         "dezembro",
     ];
 
-    const verificaData = (dataParametro) => {
-        const dataModificada = new Date(formataData(dataParametro));
-        const diferencaEmMilissegundos = dataDeHoje - dataModificada;
-        const diferencaEmDias = Math.floor(
-            diferencaEmMilissegundos / (1000 * 60 * 60 * 24)
-        );
-        return diferencaEmDias;
-    };
-
     const mudarDataAtual = {
         diaAnterior: function () {
-            const diasAlterados = verificaData(
-                new Date(dataAtual.setDate(data.getDate() - 1))
-            );
-
-            if (diasAlterados === +1 || diasAlterados === 0) {
-                setData(new Date(dataAtual.setDate(data.getDate() - 1)));
-            }
+            setData(new Date(dataAtual.setDate(data.getDate() - 1)));
         },
         diaPosterior: function () {
-            const diasAlterados = verificaData(
-                new Date(dataAtual.setDate(data.getDate() + 1))
-            );
-
-            if (diasAlterados === -1 || diasAlterados === 0) {
-                setData(new Date(dataAtual.setDate(data.getDate() + 1)));
-            }
+            setData(new Date(dataAtual.setDate(data.getDate() + 1)));
         },
     };
 
