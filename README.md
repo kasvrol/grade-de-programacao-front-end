@@ -14,6 +14,7 @@ A aplicação foi construída utilizando as seguintes tecnologias e bibliotecas:
 -   Mui Icons v^5.14.8
 -   Node v18.16.0
 -   NPM v9.5.1
+-   Axios v^1.5.0
 
 ## Como Executar a Aplicação em Sua Máquina:
 
