@@ -4,6 +4,22 @@
 
 Este é o repositório da aplicação web de Grade de Programação Front-End desenvolvida para exibir a programação da RPC, afiliada da Rede Globo. Esta aplicação realiza requisições na API "EPG" disponibilizada pela Rede Globo.
 
+A API desenvolvida para esse projeto traz apenas a programação dos dias 08, 09. 10, 11 por causa das limitações do banco de dados utilizado.
+
+> <pre>
+> 
+> public/ # Imagens, fontes, etc.
+> dist/ # É gerado após build para execução
+> src/# Arquivos que aparecerão em tela/components.
+> pages/api/# Arquivos de requisições.
+> components/ # Componentes para economizar linhas ou reutilizar.
+> utils/ # Bibliotecas/cores que pode alterar tudo.
+> pages/ # Arquivos que servem como roteamente da url.
+> styles/ # Arquivos css.
+> utils/ # Funções/tipos que podem ser reutilizados
+> 
+>  </pre>
+
 ## Ferramentas utilizadas:
 
 A aplicação foi construída utilizando as seguintes tecnologias e bibliotecas:
@@ -23,13 +39,13 @@ Para executar a aplicação em sua máquina local, siga os passos abaixo:
 1 - Clone este repositório para sua máquina local usando o seguinte comando:
 
 ```bash
-git clone [URL DO REPOSITÓRIO]
+git clone https://github.com/kasvrol/grade-de-programacao-front-end.git
 ```
 
 2 - Navegue até o diretório do projeto:
 
 ```bash
-cd [NOME DO DIRETÓRIO]
+cd grade-de-programacao-front-end
 ```
 
 3 - Instale as dependências do projeto usando o npm:
