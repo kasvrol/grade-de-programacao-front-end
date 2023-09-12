@@ -187,22 +187,18 @@ export default function ListaProgramacao({
         let programacaoVindaComADataAtual;
         let programacaoVindaComADataAnterior;
         let programacaoInteira;
-        if (dadosDoDiaAtual && dadosDoDiaAnterior) {
-            if (dadosDoDiaAtual.programme && dadosDoDiaAnterior.programme) {
-                programacaoVindaComADataAtual =
-                    dadosDoDiaAtual.programme.entries;
 
-                programacaoVindaComADataAnterior =
-                    dadosDoDiaAnterior.programme.entries;
-            } else if (dadosDoDiaAtual.entries && dadosDoDiaAnterior.entries) {
-                programacaoVindaComADataAtual = dadosDoDiaAtual.entries;
-                programacaoVindaComADataAnterior = dadosDoDiaAnterior.entries;
-            }
+        if (dadosDoDiaAtual.programme && dadosDoDiaAnterior.programme) {
+            programacaoVindaComADataAtual = dadosDoDiaAtual.programme.entries;
+
+            programacaoVindaComADataAnterior =
+                dadosDoDiaAnterior.programme.entries;
+
             programacaoInteira = new Array(
                 ...programacaoVindaComADataAnterior,
                 ...programacaoVindaComADataAtual
             );
-        } else if (dadosDoDiaAtual.entries) {
+        } else if (dadosDoDiaAtual.programme) {
             programacaoInteira = dadosDoDiaAtual.entries;
         }
 
