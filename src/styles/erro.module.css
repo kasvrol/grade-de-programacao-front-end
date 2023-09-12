@@ -1,0 +1,15 @@
+.ErroContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--quarta-cor-padrao);
+    padding: 5vw;
+}
+
+.Aviso {
+    font-weight: 900;
+    text-align: center;
+    color: var(--terceira-cor-padrao);
+}

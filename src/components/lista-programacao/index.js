@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import { API_PROGRAMACAO } from "../../app/pages/api/index";
 import Loading from "../loading";
-import styles from "../../styles/lista-de-programacao.module.css";
+import styles from "@/styles/lista-de-programacao.module.css";
 import { Collapse } from "antd";
 import { formataData, transformaHorarioEmString, Data } from "@/utils/funcoes";
+import ComponenteErro from "../componente-erro";
 
 export default function ListaProgramacao({
     dataDaProgramacao,
@@ -212,6 +213,8 @@ export default function ListaProgramacao({
         <section className={styles.ListaDeProgramacaoContainer}>
             {carregandoDiaAtual && carregandoDiaAnterior ? (
                 <Loading />
+            ) : error ? (
+                <ComponenteErro />
             ) : (
                 <div className={styles.Collapse}>
                     <Collapse accordion items={verificaProgramacao()} />{" "}
