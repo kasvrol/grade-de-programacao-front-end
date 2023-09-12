@@ -3,13 +3,24 @@ import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import ListaProgramacao from "@/components/lista-programacao";
 import DataSelecionada from "@/components/data-selecionada";
-import { formataData } from "@/utils/funcoes";
+import { formataData, Data, transformaEmData } from "@/utils/funcoes";
 
 export default function Home() {
-    const dataDeHoje = new Date();
+    const dataDeHoje = Data;
     const [dataDeProgramacao, setDataDeProgramacao] = useState(
-        formataData(dataDeHoje)
+        formataData(Data)
     );
+    const [dataAnteriorAoDiaAtual, setDataAnteriorAoDiaAtual] = useState(
+        formataData(transformaEmData(dataDeProgramacao))
+    );
+
+    useEffect(() => {
+        const diaAnteriorAData = transformaEmData(dataDeProgramacao);
+        diaAnteriorAData.setDate(
+            transformaEmData(dataDeProgramacao).getDate() - 1
+        );
+        setDataAnteriorAoDiaAtual(formataData(diaAnteriorAData));
+    }, [dataDeProgramacao]);
 
     return (
         <main className={styles.Main}>
@@ -17,7 +28,10 @@ export default function Home() {
                 dataDeHoje={dataDeHoje}
                 setDataDeProgramacao={setDataDeProgramacao}
             />
-            <ListaProgramacao dataDeProgramacao={dataDeProgramacao} />
+            <ListaProgramacao
+                dataDaProgramacao={dataDeProgramacao}
+                dataDaProgramacaoAnteriorAoDiaAtual={dataAnteriorAoDiaAtual}
+            />
         </main>
     );
 }
