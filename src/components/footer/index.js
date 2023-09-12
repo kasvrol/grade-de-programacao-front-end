@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <header className={styles.Footer}>
+        <footer className={styles.Footer}>
             <div className={styles.LogoContainer}>
                 <Image
                     src={logo}
@@ -15,6 +15,6 @@ export default function Footer() {
             <p className={styles.Copyright}>
                 © Copyright 2000-2023 Globo Comunicação e Participações S.A.
             </p>
-        </header>
+        </footer>
     );
 }
