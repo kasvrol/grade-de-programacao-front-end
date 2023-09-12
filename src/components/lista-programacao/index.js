@@ -4,24 +4,39 @@ import { API_PROGRAMACAO } from "../../app/pages/api/index";
 import Loading from "../loading";
 import styles from "../../styles/lista-de-programacao.module.css";
 import { Collapse } from "antd";
-import Image from "next/image";
+import { formataData, transformaHorarioEmString, Data } from "@/utils/funcoes";
 
-export default function ListaProgramacao({ dataDeProgramacao }) {
-    const [dados, setDados] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
+export default function ListaProgramacao({
+    dataDaProgramacao,
+    dataDaProgramacaoAnteriorAoDiaAtual,
+}) {
+    const [dadosDoDiaAtual, setDadosDoDiaAtual] = useState("");
+    const [dadosDoDiaAnterior, setDadosDoDiaAnterior] = useState("");
+    const [carregandoDiaAtual, setCarregandoDiaAtual] = useState(true);
+    const [carregandoDiaAnterior, setCarregandoDiaAnterior] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        API_PROGRAMACAO(dataDeProgramacao)
+        API_PROGRAMACAO(dataDaProgramacao)
             .then((apiData) => {
-                setDados(apiData);
-                setIsLoading(false);
+                setDadosDoDiaAtual(apiData);
+                setCarregandoDiaAtual(false);
+            })
+            .catch((error) => {
+                setError(true);
+                setCarregandoDiaAtual(false);
+            });
+
+        API_PROGRAMACAO(dataDaProgramacaoAnteriorAoDiaAtual)
+            .then((apiData) => {
+                setDadosDoDiaAnterior(apiData);
+                setCarregandoDiaAnterior(false);
             })
             .catch((error) => {
                 setError(error);
-                setIsLoading(false);
+                setCarregandoDiaAnterior(false);
             });
-    }, [dataDeProgramacao]);
+    }, [dataDaProgramacao]);
 
     const converterTimestamp = {
         horario: function (timestamp) {
@@ -39,31 +54,27 @@ export default function ListaProgramacao({ dataDeProgramacao }) {
         data: function (timestamp) {
             const timestampBase = new Date(timestamp * 1000);
 
-            const timestampLocal = timestampBase
-                .toLocaleDateString("pt-BR")
-                .split("/")
-                .reverse()
-                .join("-");
+            const timestampLocal = formataData(timestampBase);
 
-            if (timestampLocal === dataDeProgramacao) {
+            if (timestampLocal === dataDaProgramacao) {
                 return timestampLocal;
             }
         },
     };
 
-    const ProgramacaoAFiltar = () => {
-        const filtrarProgramacao = dados.programme.entries.filter(
-            (programa) => {
+    const ProgramacaoAFiltar = (programacaoInteira) => {
+        if (programacaoInteira) {
+            const filtrarProgramacao = programacaoInteira.filter((programa) => {
                 const programacaoDoDia = converterTimestamp.data(
                     programa.start_time
                 );
                 if (programacaoDoDia) {
                     return programa;
                 }
-            }
-        );
+            });
 
-        return filtrarProgramacao;
+            return filtrarProgramacao;
+        }
     };
 
     const verificaImagem = (imagem, alt, tipo) => {
@@ -112,9 +123,34 @@ export default function ListaProgramacao({ dataDeProgramacao }) {
         );
     };
 
+    const verificaSeEstaAoVivo = (horarioEData) => {
+        const verificarDia = converterTimestamp.data(horarioEData.start_time);
+        const hoje = formataData(Data);
+        if (verificarDia === hoje) {
+            const horarioAoVivo = Data.toLocaleString("pt-BR", {
+                timeZone: "America/Sao_Paulo",
+            })
+                .split(",")
+                .at(-1)
+                .replace(/^\s+/, "");
+            const fimDaProgramacao = transformaHorarioEmString(
+                horarioEData.end_time
+            );
+            const inicioDaProgramacao = transformaHorarioEmString(
+                horarioEData.start_time
+            );
+
+            if (
+                inicioDaProgramacao <= horarioAoVivo &&
+                horarioAoVivo <= fimDaProgramacao
+            ) {
+                return <div className={styles.AoVivo}>AO VIVO</div>;
+            }
+        }
+    };
+
     const InformacoesDoPrograma = (programa) => {
         const programacaoHora = converterTimestamp.horario(programa.start_time);
-        console.log(programacaoHora);
         const titulo = programa.program.name;
 
         return (
@@ -128,27 +164,57 @@ export default function ListaProgramacao({ dataDeProgramacao }) {
                     {programacaoHora.hora}:{programacaoHora.minutos}
                 </p>
                 <h2 className={styles.Titulo}>{titulo}</h2>
+                {verificaSeEstaAoVivo(programa)}
             </section>
         );
     };
 
-    const Programacao = () => {
-        return ProgramacaoAFiltar().map((program, index) => {
-            return {
-                key: index,
-                label: InformacoesDoPrograma(program),
-                children: InformacoesAdicionaisDoPrograma(program),
-            };
-        });
+    const Programacao = (programacaoInteira) => {
+        const programacaoFiltrada = ProgramacaoAFiltar(programacaoInteira);
+        if (programacaoFiltrada) {
+            return programacaoFiltrada.map((program, index) => {
+                return {
+                    key: index,
+                    label: InformacoesDoPrograma(program),
+                    children: InformacoesAdicionaisDoPrograma(program),
+                };
+            });
+        }
+    };
+
+    const verificaProgramacao = () => {
+        let programacaoVindaComADataAtual;
+        let programacaoVindaComADataAnterior;
+        let programacaoInteira;
+        if (dadosDoDiaAtual && dadosDoDiaAnterior) {
+            if (dadosDoDiaAtual.programme && dadosDoDiaAnterior.programme) {
+                programacaoVindaComADataAtual =
+                    dadosDoDiaAtual.programme.entries;
+
+                programacaoVindaComADataAnterior =
+                    dadosDoDiaAnterior.programme.entries;
+            } else if (dadosDoDiaAtual.entries && dadosDoDiaAnterior.entries) {
+                programacaoVindaComADataAtual = dadosDoDiaAtual.entries;
+                programacaoVindaComADataAnterior = dadosDoDiaAnterior.entries;
+            }
+            programacaoInteira = new Array(
+                ...programacaoVindaComADataAnterior,
+                ...programacaoVindaComADataAtual
+            );
+        } else if (dadosDoDiaAtual.entries) {
+            programacaoInteira = dadosDoDiaAtual.entries;
+        }
+
+        return Programacao(programacaoInteira);
     };
 
     return (
         <section className={styles.ListaDeProgramacaoContainer}>
-            {isLoading ? (
+            {carregandoDiaAtual && carregandoDiaAnterior ? (
                 <Loading />
             ) : (
                 <div className={styles.Collapse}>
-                    <Collapse accordion items={Programacao()} />{" "}
+                    <Collapse accordion items={verificaProgramacao()} />{" "}
                 </div>
             )}
         </section>

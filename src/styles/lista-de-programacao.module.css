@@ -69,7 +69,17 @@
     font-size: var(--font-size-padrao);
 }
 
+.AoVivo {
+    background-color: var(--segunda-cor-padrao);
+    padding: 0.3rem;
+    color: white;
+    font-weight: 800;
+}
+
 @media screen and (max-width: 800px) {
+    .Collapse {
+        max-width: 80%;
+    }
     .Apresentacao {
         flex-direction: column;
         margin: 0;
