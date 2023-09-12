@@ -2,9 +2,10 @@
 
 ## Sobre
 
-Este é o repositório da aplicação web de Grade de Programação Front-End desenvolvida para exibir a programação da RPC, afiliada da Rede Globo. Esta aplicação realiza requisições na API "EPG" disponibilizada pela Rede Globo e na API Alternativa baseada em dados da API RPG.
+Repositório da aplicação Front-End da Grade de Programaçãoda RPC, afiliada da Rede Globo. Esta aplicação realiza requisições na API "EPG" disponibilizada pela Rede Globo e na API Alternativa baseada nos dados da API EPG.
 
-Por causa do cors da API EPG, necessita desabilitar o cors do navegador para rodar a aplicação local e em produção o sistema sempre recorre a API Alternativa. Caso queira ver a programação do dia atual, se ele não estiver armazenado no banco, deve-se utilizar a aplicação back-end primeiro e depois rodar a aplicação front-end.
+Por causa do cors da API EPG para rodar a aplicação local fazendo requisição apenas nela, necessita desabilitar o cors do navegador e em produção o sistema sempre recorre a API Alternativa. Caso queira ver a programação do dia atual, se ele não estiver armazenado no banco, deve-se utilizar a aplicação back-end primeiro e depois rodar a aplicação front-end.
+A explicação de uso da aplicação back-end se encontra no repositório [grade de programação back-end](https://github.com/kasvrol/grade-de-programacao-back-end), podendo fazer a requisição direto para o link em produção.
 
 A API desenvolvida para esse projeto traz apenas a programação dos dias 08, 09. 10, 11, 12, 13, 14 por causa das limitações do banco de dados utilizado.
 
