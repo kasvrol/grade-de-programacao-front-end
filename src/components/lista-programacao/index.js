@@ -187,8 +187,7 @@ export default function ListaProgramacao({
         let programacaoVindaComADataAtual;
         let programacaoVindaComADataAnterior;
         let programacaoInteira;
-
-        if (dadosDoDiaAtual.programme && dadosDoDiaAnterior.programme) {
+        if (dadosDoDiaAtual && dadosDoDiaAnterior) {
             programacaoVindaComADataAtual = dadosDoDiaAtual.programme.entries;
 
             programacaoVindaComADataAnterior =
@@ -198,8 +197,8 @@ export default function ListaProgramacao({
                 ...programacaoVindaComADataAnterior,
                 ...programacaoVindaComADataAtual
             );
-        } else if (dadosDoDiaAtual.programme) {
-            programacaoInteira = dadosDoDiaAtual.entries;
+        } else if (dadosDoDiaAtual) {
+            programacaoInteira = dadosDoDiaAtual.programme.entries;
         }
 
         return Programacao(programacaoInteira);
