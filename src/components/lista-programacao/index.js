@@ -188,11 +188,11 @@ export default function ListaProgramacao({
         let programacaoVindaComADataAnterior;
         let programacaoInteira;
         if (dadosDoDiaAtual && dadosDoDiaAnterior) {
-            console.log(dadosDoDiaAtual);
             programacaoVindaComADataAtual = dadosDoDiaAtual.programme.entries;
 
             programacaoVindaComADataAnterior =
                 dadosDoDiaAnterior.programme.entries;
+
             programacaoInteira = new Array(
                 ...programacaoVindaComADataAnterior,
                 ...programacaoVindaComADataAtual

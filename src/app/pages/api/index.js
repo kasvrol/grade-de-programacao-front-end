@@ -21,7 +21,7 @@ export async function API_PROGRAMACAO(data) {
 
         try {
             const alternativeResponse = await axios.get(
-                `https://grade-de-programacao-back-end.vercel.app/programas/${data}`,
+                `http://localhost:3002/programas/${data}`,
                 {
                     headers,
                 }

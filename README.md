@@ -7,6 +7,13 @@ Repositório da aplicação Front-End da Grade de Programaçãoda RPC, afiliada 
 Por causa do cors da API EPG para rodar a aplicação local fazendo requisição apenas nela, necessita desabilitar o cors do navegador e em produção o sistema sempre recorre a API Alternativa. Caso queira ver a programação do dia atual, se ele não estiver armazenado no banco, deve-se utilizar a aplicação back-end primeiro e depois rodar a aplicação front-end.
 A explicação de uso da aplicação back-end se encontra no repositório [grade de programação back-end](https://github.com/kasvrol/grade-de-programacao-back-end).
 
+## Apresentação do projeto 📺
+
+![programação do dia](https://github.com/kasvrol/grade-de-programacao-front-end/blob/main/public/images/readme/programacao.jpeg?raw=true)
+![modal de programação aberto](https://github.com/kasvrol/grade-de-programacao-front-end/blob/main/public/images/readme/modal.jpeg?raw=true)
+![carregando dados da programação](https://github.com/kasvrol/grade-de-programacao-front-end/blob/main/public/images/readme/loading.jpeg?raw=true)
+![componente de erro](https://github.com/kasvrol/grade-de-programacao-front-end/blob/main/public/images/readme/error.jpeg?raw=true)
+
 > <pre>
 > 
 > public/ # Imagens, fontes, etc.
@@ -14,10 +21,9 @@ A explicação de uso da aplicação back-end se encontra no repositório [grade
 > src/# Arquivos que aparecerão em tela/components.
 > pages/api/# Arquivos de requisições.
 > components/ # Componentes para economizar linhas ou reutilizar.
-> utils/ # Bibliotecas/cores que pode alterar tudo.
+> utils/ # Bibliotecas/funções reutilizaveis.
 > pages/ # Arquivos que servem como roteamente da url.
 > styles/ # Arquivos css.
-> utils/ # Funções/tipos que podem ser reutilizados
 > 
 >  </pre>
 
