@@ -31,6 +31,7 @@ export default function DataSelecionada({ dataDeHoje, setDataDeProgramacao }) {
         "julho",
         "agosto",
         "setembro",
+        "outubro",
         "novembro",
         "dezembro",
     ];
